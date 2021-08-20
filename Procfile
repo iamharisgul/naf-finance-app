@@ -1,1 +1,0 @@
-web: gunicorn naf_finance.wsgi --log-file -
