@@ -1,1 +1,1 @@
-web: gunicorn naf-finance-app.wsgi --log-file -
+web: gunicorn naffinance.wsgi --log-file -
