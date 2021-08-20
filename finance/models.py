@@ -54,6 +54,8 @@ class ProjectName(models.Model):
 
 class PaidBy(models.Model):
     PaidBy_name = models.CharField(max_length=200, null=True)
+    salary = models.IntegerField()
+    cnic = models.IntegerField()
     date_create = models.DateField(auto_now_add=False , auto_now=False)
     position_in_company = models.CharField(max_length=200, null=True)
 

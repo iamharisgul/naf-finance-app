@@ -98,6 +98,8 @@ def home(request):
 
     # date insertions
     if request.method == 'POST' and request.FILES['receipt']:
+
+
         print("this is post")
         expense_amount = request.POST['amountspent']
         expense_name_id = request.POST['expense_n']
@@ -108,7 +110,7 @@ def home(request):
         project_in_which_expenses_made = ProjectName.objects.get(id=projectname_id)
         date = request.POST['date']
         description = request.POST['description']
-        receipt_of_expense = request.FILES.get('receipt')
+        receipt_of_expense = request.FILES('receipt')
         fss = FileSystemStorage(location='media/expense_receipts/')
         # fss = FileSystemStorage()
         file = fss.save(receipt_of_expense.name,receipt_of_expense)
@@ -220,13 +222,15 @@ def daily_activities(request):
 @login_required(login_url='login')
 def employes(request):
     if request.method == 'POST':
-        print("this is post")
+
         name = request.POST['name']
         position_in_company = request.POST['position']
+        cnic = request.POST['cnic']
+        monthlysalary = request.POST['monthlysalary']
         date = request.POST['date']
-        inst = PaidBy(PaidBy_name=name, position_in_company=position_in_company, date_create=date)
+        inst = PaidBy(PaidBy_name=name, salary=monthlysalary, cnic=cnic, position_in_company=position_in_company, date_create=date)
         inst.save()
-        print("data is stored")
+
 
     EmployesNames = PaidBy.objects.all()
     return render(request, 'employes.html', {'employes_of_NAF': EmployesNames})

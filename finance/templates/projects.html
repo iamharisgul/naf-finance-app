@@ -10,8 +10,8 @@
         {% csrf_token %}
         <div class="row">
             <div class="form-group col-md-4">
-                <label for="exampleInputEmail1"><b>Project Name</b></label>
-                <input type="varchar" id="projectname" class="form-control" id="projectname" name="projectname"
+                <label for="projectname"><b>Project Name</b></label>
+                <input type="varchar" id="projectname" required="true" class="form-control" id="projectname" name="projectname"
                        aria-describedby="emailHelp">
             </div>
 
@@ -25,19 +25,15 @@
             </div>
             <div class="form-group col-md-5">
                 <label for="projectlocation"><b>Project Location</b></label>
-                <input type="varchar" class="form-control" id="projectlocation" name="projectlocation">
+                <input type="varchar" class="form-control" required="true" id="projectlocation" name="projectlocation">
             </div>
         </div>
         <div class="row">
-<!--            <div class="form-group col-md-3">-->
-<!--                <label for="budget_allocated"><b>Budget Allocated In Millions</b></label>-->
-<!--                <input type="decimal" id="budget_allocated" class="form-control" id="budget_allocated"-->
-<!--                       name="budget_allocated">-->
-<!--            </div>-->
+
 
             <div class="form-group col-md-3">
                 <label for="pbudget"><b>Actual Budget In Millions</b></label>
-                <input type="decimal" class="form-control" id="pbudget" name="pbudget" placeholder="Put without M">
+                <input type="decimal" class="form-control" min="0.0" required="true" id="pbudget" name="pbudget" placeholder="Put without M">
             </div>
 
 
@@ -48,13 +44,12 @@
                 <select class="form-control" id="abovebelow" name="abovebelow">
                     <option value="Above">Above</option>
                     <option value="Below">Below</option>
-
                 </select>
             </div>
 
             <div class="form-group col-md-3">
                 <label for="ppercent"><b>Project Percentage</b></label>
-                <input type="number" class="form-control" id="ppercent" name="ppercent" placeholder="Put without %">
+                <input type="number" class="form-control" id="ppercent" required="true" min="0" max="100" name="ppercent" placeholder="Put without %">
             </div>
             <div class="form-group col-md-3">
                 <label><b>Govt Department Name</b></label>
@@ -68,24 +63,18 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label for="tender_date"><b>Tender Date</b></label>
-                <input type="date" class="form-control" id="tender_date" name="tender_date" placeholder="tender_date">
+                <input type="date" class="form-control" id="tender_date" required="true" name="tender_date" placeholder="tender_date">
             </div>
             <div class="form-group col-md-4">
                 <label for="work_order_date"><b>Work Order Date</b></label>
-                <input type="date" class="form-control" id="work_order_date" name="work_order_date"
+                <input type="date" class="form-control" required="true" id="work_order_date" name="work_order_date"
                        placeholder="work_order_date">
             </div>
 
             <div class="form-group col-md-4">
-                <label for="datecreate"><b>Date</b></label>
-                <input type="date" class="form-control" id="date" name="date" placeholder="date">
+                <label for="date"><b>Date</b></label>
+                <input type="date" class="form-control" required="true" id="date" name="date" placeholder="date">
             </div>
-<!--            <div class="form-group col-md-3">-->
-<!--                <label><b>Govt Department Name</b></label>-->
-<!--                <input type="varchar" id="govt_department_name" class="form-control" id="govt_department_name"-->
-<!--                       name="govt_department_name"-->
-<!--                       aria-describedby="emailHelp">-->
-<!--            </div>-->
 
         </div>
 

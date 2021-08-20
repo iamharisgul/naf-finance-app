@@ -55,7 +55,7 @@
         <div class="row">
             <div class="form-group col-md-2">
                 <label for="amountspent"><b>Amount Spent</b></label>
-                <input class="form-control" type="number" required="true" id="amountspent" name="amountspent">
+                <input class="form-control" type="number" min="1" required="true" id="amountspent" name="amountspent">
             </div>
 
             <div class="form-group col-md-2">
@@ -128,11 +128,11 @@
 
             <div class="form-group col-md-3">
                 <label for="fromdate"><b>From :</b></label>
-                <input type="date" class="form-control" id="fromdate" name="fromdate">
+                <input type="date" class="form-control" required="true" id="fromdate" name="fromdate">
             </div>
             <div class="form-group col-md-3">
                 <label for="todate"><b>To :</b></label>
-                <input type="date" class="form-control" id="todate" name="todate">
+                <input type="date" class="form-control" required="true" id="todate" name="todate">
             </div>
 
             <div class="form-group col-md-3">

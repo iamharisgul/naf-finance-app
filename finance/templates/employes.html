@@ -11,22 +11,26 @@
         <div class="row">
             <div class="form-group col-md-3">
                 <label for="name"><b>Name</b></label>
-                <input type="varchar" id="name" class="form-control" id="name" name="name" aria-describedby="emailHelp"
+                <input type="varchar" id="name" class="form-control" required="true" id="name" name="name" aria-describedby="emailHelp"
                        placeholder="Enter Name">
             </div>
             <div class="form-group col-md-3">
+                <label for="cnic"><b>Cnic</b></label>
+                <input type="number" class="form-control" maxlength="13" required="true" id="cnic" name="cnic" placeholder="1730108712357">
+            </div>
+            <div class="form-group col-md-2">
                 <label for="position" class="col-"><b>Position</b></label>
-                <input type="varchar" class="form-control" id="position" name="position" placeholder="Position">
+                <input type="varchar" class="form-control" required="true" id="position" name="position" placeholder="Position">
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <label for="monthlysalary"><b>Monthly Salary</b></label>
-                <input type="number" class="form-control" id="monthlysalary" name="monthlysalary" placeholder="30000">
+                <input type="number" class="form-control" required="true" min="0" id="monthlysalary" name="monthlysalary" placeholder="30000">
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <label for="date"><b>Joining Date</b></label>
-                <input type="date" class="form-control" id="date" name="date" placeholder="date">
+                <input type="date" class="form-control" required="true" id="date" name="date" placeholder="date">
             </div>
         </div>
 
@@ -44,7 +48,9 @@
     <tr>
         <th>Id</th>
         <th>Employe Name</th>
+        <th>Cnic</th>
         <th>Position in Company</th>
+        <th>Salary</th>
         <th>Date</th>
     </tr>
     </thead>
@@ -53,7 +59,9 @@
     <tr>
         <td>{{employee.id}}</td>
         <td>{{employee.PaidBy_name}}</td>
+        <td>{{employee.cnic}}</td>
         <td>{{employee.position_in_company}}</td>
+        <td>{{employee.salary}}</td>
         <td>{{employee.date_create}}</td>
     </tr>
     {% endfor %}
