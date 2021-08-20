@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--<div class="container">-->
+<!--    <h2 style="text-align:center; padding:30px;">Details Of <span style="color:red;">{{project}}</span> Project</h2>-->
+<!--</div>-->
+
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            <!--            <b style="font-size:30px; font-weight:bold;"> {{company.company_name}} </b>-->
+            <h3 style="text-align:center; padding:10px;">Details Of <span style="color:red;">{{project}}</span> Project
+            </h3>
+
+        </div>
+        <div class="row">
+        <div class="card-body col-md-6">
+            <!--        <h5 class="card-title"></h5>-->
+            <p class="card-text">Project Company :
+                {{project.project_company}}</p>
+            <p  class="card-text">Location :
+                {{project.project_location}}</p>
+            <p class="card-text">Tender Date : {{project.tender_date}}</p>
+            <p class="card-text">Word Order Date :
+                {{project.work_order_date}}</p>
+            <p class="card-text">Department :
+                {{project.govt_department_name}}</p>
+
+            <p style="font-size:20px; font-weight:bold;">Total Budget : <span style="font-size:30px; font-weight:bold;">{{project.budget_allocated}}</span> <span>   ||   Expenses  : <span style="font-size:30px; font-weight:bold;">{{sumofexpenses}}</span></span></p>
+            <p style="font-size:20px; font-weight:bold;">Remaining Budget For This Project : <span style="font-size:30px;color:red; font-weight:bold;">{{remaining_budget}}</span></p>
+        </div>
+
+        <div class="col-md-6">
+            <div style="max-height: 320px; overflow-y: scroll;">
+            <h4>Bills Passed</h4>
+
+            {% for bill in bills%}
+            <p><b>Amount :</b> {{bill.bill_amount}} || <b>Bill Type: </b> {{bill.bill_type}}</p>
+            {% endfor %}
+            </div>
+            <h4 style="color: red; padding-top:20px;">Total: <span style="color:black;">{{sum}}</span></h4>
+        </div>
+            </div>
+        <div class="card-footer text-muted">
+            Date : {{project.date_create}}
+        </div>
+    </div>
+</div>
+
+<form style="padding-top:40px;" method="POST" action="/projects/{{project.id}}/">
+    {% csrf_token %}
+    <div class="container">
+        <div style="padding-bottom:30px" class="row">
+            <!--        date feature-->
+
+            <div class="form-group col-md-3">
+                <label for="fromdate"><b>From :</b></label>
+                <input type="date" class="form-control" id="fromdate" name="fromdate">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="todate"><b>To :</b></label>
+                <input type="date" class="form-control" id="todate" name="todate">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="search"><b>Filter Results</b></label>
+                <input type="submit" class="form-control" id="search" name="search" value="Search"/>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <!--date feature above-->
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Expense Type</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>PaidBy</th>
+                    <th>Project</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for expense in expenses %}
+                <tr>
+                    <td>{{expense.id}}</td>
+                    <td>{{expense.date_of_expense}}</td>
+                    <td>{{expense.expense_type}}</td>
+                    <td>{{expense.expense_amount}}</td>
+                    <td>{{expense.description}}</td>
+                    <td>{{expense.PaidByName}}</td>
+                    <td>{{expense.expenses_in_project }}</td>
+
+                </tr>
+
+                {% endfor %}
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="3"><p style="font-size:30px;">Total</p></td>
+                    <td style="font-size:30px;" colspan="2">{{sumofexpenses}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--    </div>-->
+</form>
+
+
+{% endblock %}

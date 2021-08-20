@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="container" style="padding:30px;">
+        <h2 style="text-align:center;">Add Activity</h2>
+    </div>
+    <form action="/daily_activities/" method="post" class="form-inline">
+        {% csrf_token %}
+
+        <div class="row">
+
+            <div class="form-group col-md-3">
+                <label for="pname"><b>Project Name</b></label>
+                <select class="form-control" id="pname" name="pname">
+                    {% for pname in p_names %}
+                    <option value="{{pname.id}}">{{pname.project_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="activity"><b>Activity</b></label>
+                <input type="text" class="form-control" id="activity" name="activity"
+                       placeholder="Description">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="date"><b>Date</b></label>
+                <input type="date" class="form-control" id="date" name="date">
+            </div>
+
+            <div class="form-group col-md-12">
+                <label for="description"><b>Description</b></label>
+                <input type="text" class="form-control" id="description" name="description">
+            </div>
+
+
+        </div>
+        <div style="text-align:center; padding-top:30px;">
+            <button type="submit" class="btn btn-primary ">Add Record</button>
+        </div>
+    </form>
+</div>
+
+
+<div class="container">
+    <h2 style="text-align:center;">Activities</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Project Name</th>
+                <th>Activity</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for activity in all_activities %}
+            <tr>
+                <td>{{activity.id}}</td>
+                <td>{{activity.project_name}}</td>
+                <td>{{activity.activity}}</td>
+                <td>{{activity.description}}</td>
+                <td>{{activity.date}}
+                <td><a class="btn btn-sm btn-danger" href="/delete_activity/{{activity.id}}">Delete</a></td>
+            </tr>
+
+            {% endfor %}
+<!--            <tr>-->
+<!--                <td colspan="2"></td>-->
+<!--                <td colspan="3"><p style="font-size:30px;">Total Bills : </p></td>-->
+<!--                <td style="font-size:30px;" colspan="2">{{sum_of_bills}}</td>-->
+<!--            </tr>-->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

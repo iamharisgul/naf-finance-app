@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="container" style="padding:30px;">
+        <h2 style="text-align:center;">Add Income</h2>
+    </div>
+    <form action="/incomes/" method="post">
+        {% csrf_token %}
+        <div class="row">
+
+            <div class="form-group col-md-4">
+                <label for="amount"><b>Amount</b></label>
+                <input type="number" class="form-control" id="amount" name="amount" placeholder="30000">
+            </div>
+
+
+            <div class="form-group col-md-4">
+                <label for="source" class="col-"><b>Source</b></label>
+                <input type="varchar" class="form-control" id="source" name="source">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="date"><b>Date</b></label>
+                <input type="date" class="form-control" id="date" name="date" placeholder="date">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="description" class="col-"><b>Description</b></label>
+                <input type="varchar" class="form-control" id="description" name="description">
+            </div>
+        </div>
+
+        <br>
+        <button type="submit" class="btn btn-primary">Add Income</button>
+    </form>
+</div>
+
+<!--below is code for displaying the employes-->
+<div class="container" style="padding:30px;">
+    <h2 style="text-align:center;">Incomes</h2>
+</div>
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>Id</th>
+        <th>Income</th>
+        <th>Source</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for income_amount in all_incomes %}
+    <tr>
+        <td>{{income_amount.id}}</td>
+        <td>{{income_amount.income_amount}}</td>
+        <td>{{income_amount.source}}</td>
+        <td>{{income_amount.description}}</td>
+        <td>{{income_amount.date}}</td>
+        <td><a class="btn btn-sm btn-danger" href="/delete_income/{{income_amount.id}}">Delete</a></td>
+
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="1"></td>
+        <td colspan="1"><p style="font-size:30px;">Total Income</p></td>
+        <td style="font-size:30px;" colspan="1">{{sum_of_all_incomes}}</td>
+        <td colspan="2"><p style="font-size:30px;">Total Expenses</p></td>
+        <td style="font-size:30px;" colspan="2">{{sum_of_all_expenses}}</td>
+
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+        <td colspan="1"><p style="font-size:30px;">Remaining</p></td>
+        <td style="font-size:30px;" colspan="3">{{remaining_amount}}</td>
+    </tr>
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="container" style="padding:30px;">
+        <h2 style="text-align:center;">Add Bill</h2>
+    </div>
+    <form action="/project_bills/" method="post" class="form-inline">
+        {% csrf_token %}
+
+        <div class="row">
+
+            <div class="form-group col-md-2">
+                <label for="date"><b>Date</b></label>
+                <input type="date" class="form-control" id="date" name="date">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="pname"><b>Project Name</b></label>
+                <select class="form-control" id="pname" name="pname">
+                    {% for pname in p_names %}
+                    <option value="{{pname.id}}">{{pname.project_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="bill_amount"><b>Bill Amount</b></label>
+                <input class="form-control" type="number" id="bill_amount" name="bill_amount">
+            </div>
+
+            <div class="form-group col-md-2">
+                <!--                <div class="form-group">-->
+                <label for="billtype"><b>Bill Type</b></label>
+                <select class="form-control" id="billtype" name="billtype">
+                    <option value="Additional">Additional</option>
+                    <option value="Bill">Bill</option>
+
+                </select>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="bill_number"><b>Bill Number</b></label>
+                <input type="text" class="form-control" id="bill_number" name="bill_number">
+            </div>
+
+
+        </div>
+        <!--      below is modificationcode-->
+        <div class="row">
+
+            <div class="form-group col-md-12">
+                <label for="description"><b>Description</b></label>
+                <input type="text" class="form-control" id="description" name="description">
+            </div>
+
+
+        </div>
+        <div style="text-align:center; padding-top:30px;">
+            <button type="submit" class="btn btn-primary ">Add Record</button>
+        </div>
+    </form>
+</div>
+
+
+<div class="container">
+    <h2 style="text-align:center;">Bills</h2>
+</div>
+<form method="POST" action="/project-bills-search/">
+    {% csrf_token %}
+    <div class="container">
+        <div style="padding-bottom:30px" class="row">
+            <!--        date feature-->
+
+            <div class="form-group col-md-3">
+                <label for="fromdate"><b>From :</b></label>
+                <input type="date" class="form-control" id="fromdate" name="fromdate">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="todate"><b>To :</b></label>
+                <input type="date" class="form-control" id="todate" name="todate">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="todate"><b>Project :</b></label>
+                <select class="form-control" id="pname" name="pname">
+                    {% for pname in p_names %}
+                    <option value="{{pname.id}}">{{pname.project_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="search"><b>Filter Results</b></label>
+                <input type="submit" class="form-control" id="search" name="search" value="Search"/>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <!--date feature above-->
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Project Name</th>
+                    <th>Bill Amount</th>
+                    <th>Bill Type</th>
+                    <th>Bill Number</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for bill in all_bills %}
+                <tr>
+                    <td>{{bill.id}}</td>
+                    <td>{{bill.date}}</td>
+                    <td>{{bill.project_name}}</td>
+                    <td>{{bill.bill_amount}}</td>
+                    <td>{{bill.bill_type}}</td>
+                    <td>{{bill.bill_number}}</td>
+                    <td>{{bill.description}}</td>
+                    <td><a class="btn btn-sm btn-danger" href="/bill_delete/{{bill.id}}">Delete</a></td>
+
+
+                </tr>
+
+                {% endfor %}
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="3"><p style="font-size:30px;">Total Bills : </p></td>
+                    <td style="font-size:30px;" colspan="2">{{sum_of_bills}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--    </div>-->
+</form>
+
+
+{% endblock %}

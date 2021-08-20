@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for company in companies %}
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            <b style="font-size:30px; font-weight:bold;"> {{company.company_name}} </b>
+        </div>
+        <div class="card-body">
+            <!--        <h5 class="card-title"></h5>-->
+            <p class="card-text">{{company.company_description}}</p>
+            <p class="btn btn-primary">Total Budget : {{company.company_total_budget}}</p>
+        </div>
+        <div class="card-footer text-muted">
+            Creation Date : {{company.company_creation_date}}
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="container" style="padding:30px;">
+        <h2 style="text-align:center;">Add Expenses</h2>
+    </div>
+    <!-- Button trigger modal -->
+    <button style="margin-top:10px; " type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+        Add New Expense Type
+    </button>
+
+    <!--    triger code-->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Adding Expense Type</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!--                    form-->
+                    <form action="/addexpensetype/" method="post" class="form-inline">
+                        {% csrf_token %}
+
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="expensetype"><b>Add Expense Type</b></label>
+                                <input class="form-control" type="text" id="expensetype" name="expensetype">
+                            </div>
+                            <div style="text-align:center; padding-top:30px;">
+                                <button type="submit" class="btn btn-primary ">Add Expense</button>
+                            </div>
+                        </div>
+
+                    </form>
+                    <!--                    end form-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    above is trigger code-->
+
+
+    <form action="/" method="post" class="form-inline" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="form-group col-md-2">
+                <label for="amountspent"><b>Amount Spent</b></label>
+                <input class="form-control" type="number" required="true" id="amountspent" name="amountspent">
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="expense_n"><b>Expense Type</b></label>
+                <select class="form-control" id="expense_n" name="expense_n">
+                    {% for name in expense_name %}
+                    <option value="{{name.id}}">{{name.expense_name}}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="paid_by"><b>Paid By</b></label>
+                <select class="form-control" id="paid_by" name="paid_by">
+                    {% for name in paid_by %}
+                    <option value="{{name.id}}">{{name.PaidBy_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="pname"><b>Project Name</b></label>
+                <select class="form-control" id="pname" name="pname">
+                    {% for pname in expenses_in_project %}
+                    <option value="{{pname.id}}">{{pname.project_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="date"><b>Date</b></label>
+                <input type="date" required="true" class="form-control" id="date" name="date">
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="receipt"><b>Receipt</b></label>
+                <input type="file" class="form-control-file" accept="image/*" id="receipt" name="receipt">
+            </div>
+
+        </div>
+        <!--      below is modificationcode-->
+        <div class="row">
+
+            <div class="form-group col-md-12">
+                <label for="description"><b>Description</b></label>
+                <input type="textarea" class="form-control" id="description" name="description"
+                       placeholder="Description">
+            </div>
+
+
+        </div>
+        <div style="text-align:center; padding-top:30px;">
+            <button type="submit" class="btn btn-primary ">Add Expense</button>
+        </div>
+    </form>
+
+
+</div>
+
+
+<div class="container">
+    <h2 style="text-align:center;">Companies Daily Expenses</h2>
+</div>
+<form method="POST" action="/search/">
+    {% csrf_token %}
+    <div class="container">
+        <div style="padding-bottom:30px" class="row">
+            <!--        date feature-->
+
+            <div class="form-group col-md-3">
+                <label for="fromdate"><b>From :</b></label>
+                <input type="date" class="form-control" id="fromdate" name="fromdate">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="todate"><b>To :</b></label>
+                <input type="date" class="form-control" id="todate" name="todate">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="todate"><b>Project :</b></label>
+                <select class="form-control" id="pname" name="pname">
+                    {% for pname in expenses_in_project %}
+                    <option value="{{pname.id}}">{{pname.project_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="search"><b>Filter Results</b></label>
+                <input type="submit" class="form-control" id="search" name="search" value="Search"/>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <!--date feature above-->
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Expense Type</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>PaidBy</th>
+                    <th>Project</th>
+                    <th>Receipt</th>
+                    <th>Actions</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for expense in expenses %}
+                <tr>
+                    <td>{{expense.id}}</td>
+                    <td>{{expense.date_of_expense}}</td>
+                    <td>{{expense.expense_type}}</td>
+                    <td>{{expense.expense_amount}}</td>
+                    <td>{{expense.description}}</td>
+                    <td>{{expense.PaidByName}}</td>
+                    <td>{{expense.expenses_in_project }}</td>
+                    {% if expense.expense_receipt %}
+                    <td><a href="{{expense.expense_receipt.url}}" target=_blank><img src="{{ expense.expense_receipt.url }}" alt="" width="50" height="50"></a></td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+
+                    <td><a class="btn btn-sm btn-danger" href="/delete_expense/{{expense.id}}">Delete</a></td>
+
+
+                </tr>
+
+                {% endfor %}
+                <tr>
+                    <td colspan="3"></td>
+                    <td colspan="3"><p style="font-size:30px;">Total</p></td>
+                    <td style="font-size:30px;" colspan="2">{{sumofexpenses}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--    </div>-->
+</form>
+
+
+{% endblock %}
