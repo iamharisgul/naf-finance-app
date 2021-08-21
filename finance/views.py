@@ -115,12 +115,12 @@ def home(request):
         project_in_which_expenses_made = ProjectName.objects.get(id=projectname_id)
         date = request.POST['date']
         description = request.POST['description']
-        receipt_of_expense = request.FILES.get('receipt')
-        fss = FileSystemStorage()
-        # fss = FileSystemStorage()
-        file = fss.save(receipt_of_expense.name,receipt_of_expense)
-        file_url = fss.url(file)
-        print(file, file_url)
+
+        if len(request.FILES) != 0:
+            file_url = request.FILES.get('receipt')
+        else:
+            file_url = ""
+
         inst = ProjectExpenses(expense_amount=expense_amount, expense_type=expense_typename, description=description,
                                date_of_expense=date, PaidByName=paidby,
                                expenses_in_project=project_in_which_expenses_made, expense_receipt=file_url)
@@ -151,6 +151,11 @@ def search(request):
         projectname_id = request.POST['pname']
         psearch = ProjectName.objects.get(id=projectname_id)
 
+        if len(request.FILES) != 0:
+            file_url = request.FILES.get('receipt')
+        else:
+            file_url = ""
+
         searchresults = ProjectExpenses.objects.filter(date_of_expense__range=[fromdate, todate]).filter(expenses_in_project=psearch).order_by('date_of_expense')
 
         some_of_all_expenses = sum(searchresults.values_list('expense_amount', flat=True))
@@ -161,9 +166,7 @@ def search(request):
                       {'expense_name': expense_name, 'expenses': searchresults, 'paid_by': paidbynames_all,
                        'expenses_in_project': expenses_in_project, 'sumofexpenses': some_of_all_expenses})
     else:
-        # return render(request, 'index.html',
-        #               {'expense_name': expense_name, 'expenses': ExpensesQ, 'paid_by': paidbynames_all,
-        #                'expenses_in_project': expenses_in_project})
+
         return render(request, 'index.html',
                       {'expense_name': expense_name, 'expenses': ExpensesQ, 'paid_by': paidbynames_all,
                        'expenses_in_project': expenses_in_project, 'sumofexpenses': some_of_all_expenses})

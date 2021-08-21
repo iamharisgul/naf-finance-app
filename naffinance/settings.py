@@ -85,6 +85,20 @@ WSGI_APPLICATION = 'naffinance.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+#Development Server Database
+# DATABASES = {
+#     'default': {
+#         'NAME': 'd3mb4vab0smm79',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'USER': 'jtchigdimtphuz',
+#         'PASSWORD': 'b32fe21e954549416ea9f1ac7116802bf65b690faa233d5916f132c102773c97',
+#         'HOST': 'ec2-18-214-238-28.compute-1.amazonaws.com',
+#         'PORT': '5432'
+#     }
+# }
+
+#Testing Server Database
 DATABASES = {
     'default': {
         'NAME': 'd52tplcl7roall',
@@ -133,9 +147,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 # MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+
 STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 django_heroku.settings(locals())
