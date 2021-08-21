@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-m)+jo(s&3mkc)pabvs^=u2&sju9p$7o#i@$4155#ja68j$wk4p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['naf-finance-app.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['naf-finance-app.herokuapp.com','naf-finance-app-testing-server.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
