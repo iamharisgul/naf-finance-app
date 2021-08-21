@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
+# import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-m)+jo(s&3mkc)pabvs^=u2&sju9p$7o#i@$4155#ja68j$wk4p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['naf-finance-app.herokuapp.com','naf-finance-app-testing-server.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['www.naffinance.com','naffinance.com','naf-finance-app.herokuapp.com','naf-finance-app-testing-server.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -79,12 +79,12 @@ WSGI_APPLICATION = 'naffinance.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 #Development Server Database
 # DATABASES = {
@@ -99,16 +99,16 @@ WSGI_APPLICATION = 'naffinance.wsgi.application'
 # }
 
 #Testing Server Database
-DATABASES = {
-    'default': {
-        'NAME': 'd52tplcl7roall',
-        'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'rxihafsxvwqcrf',
-        'PASSWORD': '4130358f575e2e2e632b9b4682cb6ca3d0df053f0918b20e701c78c757256e17',
-        'HOST': 'ec2-54-159-35-35.compute-1.amazonaws.com',
-        'PORT': '5432'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'NAME': 'd52tplcl7roall',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'USER': 'rxihafsxvwqcrf',
+#         'PASSWORD': '4130358f575e2e2e632b9b4682cb6ca3d0df053f0918b20e701c78c757256e17',
+#         'HOST': 'ec2-54-159-35-35.compute-1.amazonaws.com',
+#         'PORT': '5432'
+#     }
+# }
 
 
 # Password validation
@@ -152,7 +152,7 @@ STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
