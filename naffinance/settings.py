@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,10 +79,20 @@ WSGI_APPLICATION = 'naffinance.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'd52tplcl7roall',
+        'ENGINE': 'ec2-54-159-35-35.compute-1.amazonaws.com',
+        'USER': 'rxihafsxvwqcrf',
+        'PASSWORD': '4130358f575e2e2e632b9b4682cb6ca3d0df053f0918b20e701c78c757256e17',
+        'HOST': 'ec2-54-159-35-35.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
@@ -124,8 +135,10 @@ USE_TZ = True
 # MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
