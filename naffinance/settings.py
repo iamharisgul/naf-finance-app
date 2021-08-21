@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'naffinance.wsgi.application'
 DATABASES = {
     'default': {
         'NAME': 'd52tplcl7roall',
-        'ENGINE': 'ec2-54-159-35-35.compute-1.amazonaws.com',
+        'ENGINE': 'django.db.backends.postgresql',
         'USER': 'rxihafsxvwqcrf',
         'PASSWORD': '4130358f575e2e2e632b9b4682cb6ca3d0df053f0918b20e701c78c757256e17',
         'HOST': 'ec2-54-159-35-35.compute-1.amazonaws.com',
