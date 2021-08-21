@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--<div class="container">-->
+<!--    <h2 style="text-align:center; padding:30px;">Details Of <span style="color:red;">{{project}}</span> Project</h2>-->
+<!--</div>-->
+
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            <h3 style="text-align:center; padding:10px;"><span style="color:red;">{{employee.PaidBy_name}}</span></h3>
+
+        </div>
+        <div class="row">
+            <div class="card-body col-md-12">
+                <!--        <h5 class="card-title"></h5>-->
+                <p class="card-text">CNIC :
+                    {{employee.cnic}}</p>
+                <p class="card-text">Position  :
+                    {{employee.position_in_company}}</p>
+                <p class="card-text">Monthly Salary : {{employee.salary}}</p>
+
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            Date Of Joining: {{employee.date_create}}
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="col-md-12">
+        <h2 style="text-align:center;">Total Salaries <span style="color:red;">{{employee.PaidBy_name}}</span> Got</h2>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Date of Salary</th>
+                <th>Amount</th>
+                <th>PaidBy</th>
+                <th>Project</th>
+
+            </tr>
+            </thead>
+
+
+            {% for salary in salaries %}
+            <tr>
+                <td>{{salary.id}}</td>
+                <td>{{salary.date_of_expense}}</td>
+<!--                <td>{{expense.expense_amount}}</td>-->
+<!--                <td>{{expense.description}}</td>-->
+<!--                <td>{{expense.PaidByName}}</td>-->
+
+
+            </tr>
+
+            {% endfor %}
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2"><p style="font-size:30px;">Total</p></td>
+                <td style="font-size:30px;" colspan="2">{{sumofexpenses}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--    </div>-->
+
+
+{% endblock %}

@@ -74,7 +74,7 @@ class ProjectExpenses(models.Model):
     description = models.TextField()
     date_of_expense = models.DateField(auto_now_add=False , auto_now=False)
     expenses_in_project = models.ForeignKey(ProjectName, on_delete=models.CASCADE)
-    expense_receipt = models.ImageField(upload_to='expense_receipts/',  null=True, blank=True)
+    expense_receipt = models.FileField(upload_to='receipts/', blank=True)
     PaidByName = models.ForeignKey(PaidBy, on_delete=models.CASCADE)
 
     def __str__(self):

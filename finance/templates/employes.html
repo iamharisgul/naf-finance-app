@@ -57,7 +57,7 @@
     <tbody>
     {% for employee in employes_of_NAF %}
     <tr>
-        <td>{{employee.id}}</td>
+        <td><a href="/employee/{{employee.id}}">{{employee.id}}</a></td>
         <td>{{employee.PaidBy_name}}</td>
         <td>{{employee.cnic}}</td>
         <td>{{employee.position_in_company}}</td>

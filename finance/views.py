@@ -12,8 +12,14 @@ from django.http import FileResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
-
 from django.core.files.storage import FileSystemStorage
+
+def EmployeeDetailView(request, pk):
+    employee_name = PaidBy.objects.get(id=pk)
+    # salaries = ProjectExpenses.objects.values_list(expense_type="salary")
+    salaries = ""
+    return render(request, 'employee_details.html',
+                  {'employee': employee_name, 'salaries':salaries})
 
 
 def ProjectDetailView(request, *args, **kwargs):
@@ -97,8 +103,7 @@ def home(request):
     # some_of_all_expenses = ProjectExpenses.objects.aggregate(Sum('expense_amount'))
 
     # date insertions
-    if request.method == 'POST' and request.FILES['receipt']:
-
+    if request.method == 'POST':
 
         print("this is post")
         expense_amount = request.POST['amountspent']
@@ -110,8 +115,8 @@ def home(request):
         project_in_which_expenses_made = ProjectName.objects.get(id=projectname_id)
         date = request.POST['date']
         description = request.POST['description']
-        receipt_of_expense = request.FILES('receipt')
-        fss = FileSystemStorage(location='media/expense_receipts/')
+        receipt_of_expense = request.FILES.get('receipt')
+        fss = FileSystemStorage()
         # fss = FileSystemStorage()
         file = fss.save(receipt_of_expense.name,receipt_of_expense)
         file_url = fss.url(file)

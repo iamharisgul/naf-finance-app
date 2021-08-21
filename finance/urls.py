@@ -13,6 +13,7 @@ urlpatterns = [
     path('projects/<int:pk>/', views.ProjectDetailView, name='project_detail'),
     path('daily_activities/', views.daily_activities, name ='expensesdetails'),
     path('employes/', views.employes, name ='employes'),
+    path('employee/<int:pk>/', views.EmployeeDetailView, name='employee_detail'),
     path('login/', views.loginpage, name="login"),
     path('logout/', views.logoutuser, name="logout"),
     path('signup/', views.signuppage, name='signup'),
