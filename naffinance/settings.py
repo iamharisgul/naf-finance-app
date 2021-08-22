@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-# import django_heroku
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,24 +79,24 @@ WSGI_APPLICATION = 'naffinance.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-#Development Server Database
 # DATABASES = {
 #     'default': {
-#         'NAME': 'd3mb4vab0smm79',
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'USER': 'jtchigdimtphuz',
-#         'PASSWORD': 'b32fe21e954549416ea9f1ac7116802bf65b690faa233d5916f132c102773c97',
-#         'HOST': 'ec2-18-214-238-28.compute-1.amazonaws.com',
-#         'PORT': '5432'
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+#Development Server Database
+DATABASES = {
+    'default': {
+        'NAME': 'd3mb4vab0smm79',
+        'ENGINE': 'django.db.backends.postgresql',
+        'USER': 'jtchigdimtphuz',
+        'PASSWORD': 'b32fe21e954549416ea9f1ac7116802bf65b690faa233d5916f132c102773c97',
+        'HOST': 'ec2-18-214-238-28.compute-1.amazonaws.com',
+        'PORT': '5432'
+    }
+}
 
 #Testing Server Database
 # DATABASES = {
@@ -152,7 +152,7 @@ STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
