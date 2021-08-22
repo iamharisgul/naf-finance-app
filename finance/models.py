@@ -63,7 +63,7 @@ class PaidBy(models.Model):
         return self.PaidBy_name
 
 class ExpenseType(models.Model):
-    expense_name = models.CharField(max_length=200, null=True)
+    expense_name = models.CharField(max_length=200, blank=False, unique=True)
 
     def __str__(self):
         return self.expense_name
