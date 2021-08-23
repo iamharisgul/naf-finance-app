@@ -12,6 +12,9 @@
             data-bs-target="#exampleModal">
         Add New Expense Type
     </button>
+    {% for message in messages %}
+    <p style="color: red;">{{message}}</p>
+    {% endfor%}
 
     <!--    triger code-->
     <!-- Modal -->
@@ -33,7 +36,7 @@
                         <div class="row">
                             <div class="form-group col-md-12">
                                 <label for="expensetype"><b>Add Expense Type</b></label>
-                                <input class="form-control" style="text-transform:lowercase" type="text" required="true" id="expensetype"
+                                <input class="form-control"  type="text" required="true" id="expensetype"
                                        name="expensetype">
                             </div>
                             <div style="text-align:center; padding-top:30px;">

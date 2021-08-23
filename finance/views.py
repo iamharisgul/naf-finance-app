@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import CreateUserForm
 from django.contrib import messages
 from .models import *
+# from django.core.exceptions import ValidationError
 import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
@@ -341,12 +342,17 @@ def addexpensetype(request):
     expense_name = ExpenseType.objects.all()
 
     if request.method == 'POST':
-        print("this is post")
         expensetype = request.POST['expensetype']
+        expensetype = expensetype.lower()
 
-        inst = ExpenseType(expense_name=expensetype)
-        inst.save()
-        print("data is stored")
+        if ExpenseType.objects.filter(expense_name=expensetype).exists():
+            # print("this is error")
+            messages.info(request, 'Expense Type already exists.')
+
+        else:
+            inst = ExpenseType(expense_name=expensetype)
+            inst.save()
+            print("data is stored")
 
     ExpensesQ = ProjectExpenses.objects.all().order_by('date_of_expense')
     some_of_all_expenses = sum(ExpensesQ.values_list('expense_amount', flat=True))
