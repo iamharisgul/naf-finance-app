@@ -19,7 +19,7 @@
 
             <div class="form-group col-md-3">
                 <label for="pname"><b>Project Name</b></label>
-                <select class="form-control" id="pname" name="pname">
+                <select class="form-control" required="true" id="pname" name="pname">
                     {% for pname in p_names %}
                     <option value="{{pname.id}}">{{pname.project_name}}</option>
                     {% endfor %}
@@ -85,7 +85,7 @@
 
             <div class="form-group col-md-3">
                 <label for="todate"><b>Project :</b></label>
-                <select class="form-control" id="pname" name="pname">
+                <select class="form-control" id="pname" required="true" name="pname">
                     {% for pname in p_names %}
                     <option value="{{pname.id}}">{{pname.project_name}}</option>
                     {% endfor %}
@@ -101,11 +101,10 @@
     </div>
 
     <div class="container-fluid">
-
-        <!--date feature above-->
     </div>
     <div class="row">
         <div class="col-md-12">
+            <div class="table-responsive">
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                 <tr>
@@ -138,12 +137,13 @@
 
                 {% endfor %}
                 <tr>
-                    <td colspan="2"></td>
-                    <td colspan="3"><p style="font-size:30px;">Total Bills : </p></td>
+                    <td colspan="4"></td>
+                    <td colspan="2"><p style="font-size:30px;">Total Bills : </p></td>
                     <td style="font-size:30px;" colspan="2">{{sum_of_bills}}</td>
                 </tr>
                 </tbody>
             </table>
+                </div>
         </div>
     </div>
     <!--    </div>-->

@@ -17,7 +17,7 @@
 
             <div class="form-group col-md-3">
                 <label for="cname"><b>Company Name</b></label>
-                <select class="form-control" id="cname" name="cname">
+                <select class="form-control" required="true" id="cname" name="cname">
                     {% for cname in companies %}
                     <option value="{{cname.id}}">{{cname.company_name}}</option>
                     {% endfor %}
@@ -87,6 +87,7 @@
 <div class="container" style="padding:30px;">
     <h2 style="text-align:center;">Projects</h2>
 </div>
+<div class="table-responsive">
 <table class="table table-bordered table-striped">
     <thead class="thead-dark">
     <tr>
@@ -118,5 +119,7 @@
     {% endfor %}
     </tbody>
 </table>
+</div>
+
 
 {% endblock %}

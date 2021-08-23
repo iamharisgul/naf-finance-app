@@ -6,45 +6,42 @@
 <div class="container" style="padding:30px;">
     <h2 style="text-align:center;">Tender Details</h2>
 </div>
-<table class="table table-bordered table-striped">
-    <thead class="thead-dark">
-    <tr>
-        <th>Id</th>
-        <th>Project Name</th>
-        <th>Budget</th>
-        <th>Percentage</th>
-        <th>B/A</th>
-        <th>Date</th>
-        <th>Amount</th>
-        <th>2%</th>
-        <th>5%</th>
-        <th>8%</th>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Project Name</th>
+            <th>Budget</th>
+            <th>Percentage</th>
+            <th>B/A</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>2%</th>
+            <th>5%</th>
+            <th>8%</th>
 
-    </tr>
-    </thead>
-    <tbody>
-    {% for tender in tenders %}
-    <tr>
-        <td>{{tender.id}}</td>
-        <td>{{tender.project_name}}</td>
-        <td>{{tender.p_budget}} M</td>
-        <td>{{tender.percent}}%</td>
-        <td>{{tender.above_below}}</td>
-        <td>{{tender.date_create}}</td>
-        <td>{{tender.budget_allocated}}</td>
-        <td>{{tender.two_percent}}</td>
-        <td>{{tender.five_percent}}</td>
-        <td>{{tender.eight_percent}}</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tender in tenders %}
+        <tr>
+            <td>{{tender.id}}</td>
+            <td>{{tender.project_name}}</td>
+            <td>{{tender.p_budget}} M</td>
+            <td>{{tender.percent}}%</td>
+            <td>{{tender.above_below}}</td>
+            <td>{{tender.date_create}}</td>
+            <td>{{tender.budget_allocated}}</td>
+            <td>{{tender.two_percent}}</td>
+            <td>{{tender.five_percent}}</td>
+            <td>{{tender.eight_percent}}</td>
 
-    </tr>
-    {% endfor %}
-    <!--    <tr>-->
-    <!--        <td colspan="3"></td>-->
-    <!--        <td colspan="1"><p style="font-size:30px;">Total Income</p></td>-->
-    <!--        <td style="font-size:30px;" colspan="1">{{sum_of_all_incomes}}</td>-->
-    <!--    </tr>-->
+        </tr>
+        {% endfor %}
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 
 {% endblock %}

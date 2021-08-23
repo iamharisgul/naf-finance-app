@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-m)+jo(s&3mkc)pabvs^=u2&sju9p$7o#i@$4155#ja68j$wk4p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.naffinance.com','naffinance.com','naf-finance-app.herokuapp.com','naf-finance-app-testing-server.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['595a-103-255-7-63.ngrok.io','www.naffinance.com','naffinance.com','naf-finance-app.herokuapp.com','naf-finance-app-testing-server.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -153,6 +153,8 @@ STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
+
+
 django_heroku.settings(locals())
 
 
