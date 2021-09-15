@@ -127,7 +127,7 @@ def home(request):
                                expenses_in_project=project_in_which_expenses_made, expense_receipt=file_url)
         inst.save()
     # end code of data insertions
-    ExpensesQ = ProjectExpenses.objects.all().order_by('date_of_expense')
+    ExpensesQ = ProjectExpenses.objects.all().order_by('-date_of_expense')
     some_of_all_expenses = sum(ExpensesQ.values_list('expense_amount', flat=True))
 
     return render(request, 'index.html',
