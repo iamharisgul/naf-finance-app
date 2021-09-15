@@ -88,28 +88,28 @@ WSGI_APPLICATION = 'naffinance.wsgi.application'
 # }
 
 #Live Server Database
-# DATABASES = {
-#     'default': {
-#         'NAME': 'd3mb4vab0smm79',
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'USER': 'jtchigdimtphuz',
-#         'PASSWORD': 'b32fe21e954549416ea9f1ac7116802bf65b690faa233d5916f132c102773c97',
-#         'HOST': 'ec2-18-214-238-28.compute-1.amazonaws.com',
-#         'PORT': '5432'
-#     }
-# }
-
-#Testing Server Database
 DATABASES = {
     'default': {
-        'NAME': 'd52tplcl7roall',
+        'NAME': 'd3mb4vab0smm79',
         'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'rxihafsxvwqcrf',
-        'PASSWORD': '4130358f575e2e2e632b9b4682cb6ca3d0df053f0918b20e701c78c757256e17',
-        'HOST': 'ec2-54-159-35-35.compute-1.amazonaws.com',
+        'USER': 'jtchigdimtphuz',
+        'PASSWORD': 'b32fe21e954549416ea9f1ac7116802bf65b690faa233d5916f132c102773c97',
+        'HOST': 'ec2-18-214-238-28.compute-1.amazonaws.com',
         'PORT': '5432'
     }
 }
+
+#Testing Server Database
+# DATABASES = {
+#     'default': {
+#         'NAME': 'd52tplcl7roall',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'USER': 'rxihafsxvwqcrf',
+#         'PASSWORD': '4130358f575e2e2e632b9b4682cb6ca3d0df053f0918b20e701c78c757256e17',
+#         'HOST': 'ec2-54-159-35-35.compute-1.amazonaws.com',
+#         'PORT': '5432'
+#     }
+# }
 
 
 # Password validation
@@ -172,13 +172,13 @@ if os.getcwd() == '/app':
 
 #S3 BUCKETS CONFIG
 
-# AWS_ACCESS_KEY_ID = 'AKIA27FSZRF6PF4WKIE5'
-# AWS_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'naffinance'
-#
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_DEFAULT_ACL = None
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# AWS_S3_REGION_NAME = 'ap-south-1'
+AWS_ACCESS_KEY_ID = 'AKIA27FSZRF6PF4WKIE5'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'naffinance'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_REGION_NAME = 'ap-south-1'
 
