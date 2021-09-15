@@ -266,7 +266,7 @@ def incomes(request):
     ExpensesQ = ProjectExpenses.objects.all()
     sum_of_all_expenses = sum(ExpensesQ.values_list('expense_amount', flat=True))
 
-    all_incomes = All_Incomes.objects.all()
+    all_incomes = All_Incomes.objects.order_by('date')
     sum_of_all_incomes = sum(all_incomes.values_list('income_amount', flat=True))
 
     remaining_amount = sum_of_all_incomes - sum_of_all_expenses
@@ -292,7 +292,7 @@ def project_bills(request):
         inst.save()
         print("data is stored")
 
-    all_bills = Project_Bills.objects.all()
+    all_bills = Project_Bills.objects.order_by('date')
     p_names = ProjectName.objects.all()
     sum_of_all_bills = sum(all_bills.values_list('bill_amount', flat=True))
 
@@ -302,7 +302,7 @@ def project_bills(request):
 #below is code for project bills search
 @login_required(login_url='login')
 def project_bills_search(request):
-    all_bills = Project_Bills.objects.all()
+    all_bills = Project_Bills.objects.order_by('date')
     p_names = ProjectName.objects.all()
     sum_of_all_bills = sum(all_bills.values_list('bill_amount', flat=True))
     expenses_in_project = ProjectName.objects.all()
