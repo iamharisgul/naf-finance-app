@@ -13,6 +13,7 @@ from django.http import FileResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
+from django.core.paginator import Paginator
 from django.core.files.storage import FileSystemStorage
 
 def EmployeeDetailView(request, pk):
@@ -99,9 +100,6 @@ def home(request):
     paidbynames_all = PaidBy.objects.all()
     expenses_in_project = ProjectName.objects.all()
     expense_name = ExpenseType.objects.all()
-    # print(expenses_in_project)
-
-    # some_of_all_expenses = ProjectExpenses.objects.aggregate(Sum('expense_amount'))
 
     # date insertions
     if request.method == 'POST':
@@ -128,10 +126,13 @@ def home(request):
         inst.save()
     # end code of data insertions
     ExpensesQ = ProjectExpenses.objects.all().order_by('-id')
+    paginator = Paginator(ExpensesQ, 50)
+    page_number = request.GET.get('page')
+    paginatedExpenses = paginator.get_page(page_number)
     some_of_all_expenses = sum(ExpensesQ.values_list('expense_amount', flat=True))
 
     return render(request, 'index.html',
-                  {'expense_name': expense_name, 'expenses': ExpensesQ, 'paid_by': paidbynames_all,
+                  {'expense_name': expense_name, 'expenses': paginatedExpenses, 'paid_by': paidbynames_all,
                    'expenses_in_project': expenses_in_project, 'sumofexpenses': some_of_all_expenses})
 
 
