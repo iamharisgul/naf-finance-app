@@ -159,13 +159,15 @@ def search(request):
             file_url = ""
 
         searchresults = ProjectExpenses.objects.filter(date_of_expense__range=[fromdate, todate]).filter(expenses_in_project=psearch).order_by('date_of_expense')
-
+        paginator = Paginator(searchresults, 30)
+        page_number = request.GET.get('page')
+        paginatedExpenses = paginator.get_page(page_number)
         some_of_all_expenses = sum(searchresults.values_list('expense_amount', flat=True))
 
 
         # print(fromdate, todate)
         return render(request, 'index.html',
-                      {'expense_name': expense_name, 'expenses': searchresults, 'paid_by': paidbynames_all,
+                      {'expense_name': expense_name, 'expenses': paginatedExpenses, 'paid_by': paidbynames_all,
                        'expenses_in_project': expenses_in_project, 'sumofexpenses': some_of_all_expenses})
     else:
 
